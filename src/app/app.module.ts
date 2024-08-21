@@ -13,6 +13,8 @@ import { TableModule } from 'primeng/table';
 import { FormsModule } from '@angular/forms';
 import { TaskFormComponent } from './components/TaskForm/TaskForm.component';
 import { TaskViewComponent } from './components/TaskView/TaskView.component';
+import { StoreModule } from '@ngrx/store';
+import { TaskReducer } from './components/store/reducers';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { TaskViewComponent } from './components/TaskView/TaskView.component';
     CalendarModule,
     TableModule,
     FormsModule,
+    StoreModule.forRoot({ tasks: TaskReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent]
