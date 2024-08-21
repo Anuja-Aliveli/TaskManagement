@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
 
 :root {
     --primary-font-size: 22px;
@@ -10,19 +11,10 @@
     --h4-font-size: 16px;
     --h5-font-size: 14px;
     --h6-font-size: 12px;
-    --subtitle1-font-size: 16px;
-    --subtitle2-font-size: 15px;
-    --body1-font-size: 15px;
-    --body2-font-size: 14px;
-    --caption-font-size: 12px;
-    --p-font-size: 16px;
-    --label-font-size: 16px;
-    --span-font-size: 16px;
-    --a-font-size: 16px;
-    --button-font-size: 14px;
-    --selected-color: #f0f7ff;
+    --selected-bg-color: #f0f7ff;
     --selected-color-border: #d8ebff;
     --background-color: #ebeff5;
+    --route-color: #1d66b2;
 }
 
 body {
@@ -64,55 +56,55 @@ h6 {
 }
 
 .subtitle1 {
-    font-size: var(--subtitle1-font-size);
+    font-size: var(--h4-font-size);
 }
 
 .subtitle2 {
-    font-size: var(--subtitle2-font-size);
+    font-size: var(--h5-font-size);
 }
 
 body1 {
     font-weight: 400;
-    font-size: var(--body1-font-size);
+    font-size: var(--h4-font-size);
 }
 
 body2 {
     font-weight: 400;
-    font-size: var(--body2-font-size);
+    font-size: var(--h5-font-size);
 }
 
 .caption {
     font-weight: 400;
-    font-size: var(--caption-font-size);
+    font-size: var(--h6-font-size);
 }
 
 p {
-    font-size: var(--p-font-size);
+    font-size: var(--h4-font-size);
     line-height: 1.5;
 }
 
 label {
-    font-size: var(--label-font-size);
+    font-size: var(--h4-font-size);
     font-weight: 500;
     line-height: 1.5;
 }
 
 span {
-    font-size: var(--span-font-size);
+    font-size: var(--h4-font-size);
 }
 
 a {
-    font-size: var(--a-font-size);
+    font-size: var(--h4-font-size);
     text-decoration: none;
 }
 
 button {
-    height: 35px;
+    height: 30px;
     width: 100%;
     outline: none;
     cursor: pointer;
     border-radius: 5px;
-    font-size: var(--button-font-size);
+    font-size: var(--h5-font-size);
 }
 
 button:hover {
@@ -125,8 +117,17 @@ button:disabled {
 
 input {
     outline: none;
-    height: 35px;
+    height: 30px;
     width: '100%';
     border-radius: 5px;
-    font-size: var(--button-font-size);
+    font-size: var(--h5-font-size);
+}
+
+a {
+    text-decoration: none;
+    color: var(--route-color);
+}
+
+.margin-right {
+    margin-right: 20px !important;
 }

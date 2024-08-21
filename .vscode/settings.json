@@ -1,0 +1,6 @@
+{
+  "cSpell.words": ["leaderboard", "pdfmake", "vendosmart"],
+  "prettier.configPath": ".prettierrc",
+  "angular.log": "verbose",
+  "editor.formatOnSave": true
+}

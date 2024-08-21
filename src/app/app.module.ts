@@ -8,10 +8,14 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { ButtonModule } from 'primeng/button';
+import { TaskListComponent } from './components/TaskList/TaskList.component';
+import { TableModule } from 'primeng/table';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TaskListComponent
   ],
   imports: [
     BrowserModule,
@@ -21,6 +25,8 @@ import { ButtonModule } from 'primeng/button';
     DropdownModule,
     ButtonModule,
     CalendarModule,
+    TableModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
