@@ -12,12 +12,14 @@ import { TaskListComponent } from './components/TaskList/TaskList.component';
 import { TableModule } from 'primeng/table';
 import { FormsModule } from '@angular/forms';
 import { TaskFormComponent } from './components/TaskForm/TaskForm.component';
+import { TaskViewComponent } from './components/TaskView/TaskView.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskListComponent,
-    TaskFormComponent
+    TaskFormComponent,
+    TaskViewComponent
   ],
   imports: [
     BrowserModule,

@@ -162,3 +162,11 @@ a {
 .p-button .p-button-outlined:hover {
     opacity: 1;
 }
+
+.label-width {
+    width: 150px;
+}
+
+.span-color {
+    color: var(--route-color);
+}
