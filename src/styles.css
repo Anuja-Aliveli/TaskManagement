@@ -123,6 +123,9 @@ input {
     width: '100%';
     border-radius: 5px;
     font-size: var(--h5-font-size);
+    background-color: transparent;
+    outline: none;
+    border: none;
 }
 
 a {
@@ -136,4 +139,26 @@ a {
 
 .app-background {
     background-color: var(--background-color);
+}
+
+.bg-white {
+    background-color: #ffffff;
+}
+
+.p-dropdown {
+    outline: none;
+    border: none;
+}
+
+.p-dropdown span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    height: 35px;
+
+}
+
+.p-button .p-button-outlined:hover {
+    opacity: 1;
 }

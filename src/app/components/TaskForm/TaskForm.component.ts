@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaskFormComponent implements OnInit {
 
+  cities: any = [];
+  temp: any;
+
   constructor() { }
 
   ngOnInit() {
+    this.cities = [
+      { name: 'New York', code: 'NY' },
+      { name: 'Rome', code: 'RM' },
+      { name: 'London', code: 'LDN' },
+      { name: 'Istanbul', code: 'IST' },
+      { name: 'Paris', code: 'PRS' }
+    ];
   }
 
 }

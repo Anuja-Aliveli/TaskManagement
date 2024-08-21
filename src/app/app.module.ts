@@ -11,11 +11,13 @@ import { ButtonModule } from 'primeng/button';
 import { TaskListComponent } from './components/TaskList/TaskList.component';
 import { TableModule } from 'primeng/table';
 import { FormsModule } from '@angular/forms';
+import { TaskFormComponent } from './components/TaskForm/TaskForm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TaskListComponent
+    TaskListComponent,
+    TaskFormComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,7 @@ import { FormsModule } from '@angular/forms';
     ButtonModule,
     CalendarModule,
     TableModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

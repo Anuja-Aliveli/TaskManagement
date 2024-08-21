@@ -1,0 +1,13 @@
+.flex-grow {
+    flex-grow: 1;
+    margin-left: 20px;
+}
+
+.border-bottom-input {
+    height: 50px;
+    border-bottom: 2px solid var(--selected-color-border);
+}
+
+.label-width {
+    width: 150px;
+}
