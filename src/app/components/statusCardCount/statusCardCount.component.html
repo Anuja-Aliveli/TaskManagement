@@ -1,0 +1,45 @@
+<p-card
+  styleClass="shadow"
+  [style]="{
+    'max-width': '250px',
+    padding: '0.5rem',
+    'border-left': '3px solid ' + cardColor
+  }"
+>
+  <div class="d-flex flex-row justify-content-between h-100 mr-3">
+    <div
+      class="d-flex flex-column justify-content-around"
+      [style]="{ height: '100px' }"
+    >
+      <span
+        *ngIf="showIcon"
+        class="count-icon"
+        [style]="{
+          color: cardColor,
+          'background-color': cardIconBackgroundColor
+        }"
+      >
+        <i [ngClass]="cardIcon"></i>
+      </span>
+      <span *ngIf="showText">{{ cardText }}</span>
+    </div>
+    <div
+      class="d-flex flex-column justify-content-around"
+      [style]="{ height: '100px' }"
+    >
+      <span
+        *ngIf="showTooltip"
+        class="count-icon"
+        [style]="{
+          color: cardColor,
+          'background-color': cardIconBackgroundColor
+        }"
+      >
+        <i [ngClass]="'pi pi-info-circle'"></i>
+      </span>
+      <span *ngIf="showCount"
+        ><b>{{ cardCountValue }}</b></span
+      >
+    </div>
+  </div>
+</p-card>

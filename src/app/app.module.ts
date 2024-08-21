@@ -13,16 +13,19 @@ import { TableModule } from 'primeng/table';
 import { FormsModule } from '@angular/forms';
 import { TaskFormComponent } from './components/TaskForm/TaskForm.component';
 import { TaskViewComponent } from './components/TaskView/TaskView.component';
+import { CardModule } from 'primeng/card';
 import { StoreModule } from '@ngrx/store';
 import { TaskReducer } from './components/store/reducers';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Import BrowserAnimationsModule
+import { StatusCardCountComponent } from './components/statusCardCount/statusCardCount.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskListComponent,
     TaskFormComponent,
-    TaskViewComponent
+    TaskViewComponent,
+    StatusCardCountComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
     CalendarModule,
     TableModule,
     FormsModule,
+    CardModule,
     StoreModule.forRoot({ tasks: TaskReducer }),
   ],
   providers: [],

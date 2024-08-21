@@ -1,66 +1,83 @@
 <div class="p-3">
-  <div>
-    <h2 class="text-center">Tasks</h2>
-  </div>
-  <div class="d-flex flex-row justify-content-end">
-    <span class="p-input-icon-left margin-right">
-      <i class="pi pi-search"></i>
-      <input
-        type="text"
-        pInputText
-        [(ngModel)]="searchInput"
-        (input)="onGlobalFilter()"
-        placeholder="Search tasks"
-      />
-    </span>
-    <p-button label="Create" icon="pi pi-plus" (onClick)="onCreateTask()" />
-  </div>
-  <div class="mt-3">
-    <p-table
-      #dt
-      [value]="rowData"
-      [columns]="columns"
-      styleClass="p-datatable-gridlines"
-      [tableStyle]="{ 'min-width': '50rem' }"
-      sortMode="multiple"
-      [resizableColumns]="true"
-      [reorderableColumns]="true"
-      [globalFilterFields]="globalFilters"
-    >
-      <ng-template pTemplate="header">
-        <tr>
-          <ng-container *ngFor="let col of columns">
-            <th class="header-row" [pSortableColumn]="col.fieldname">
-              {{ col.label }}
-              <p-sortIcon
-                [field]="col.fieldname"
-                style="font-size: 12px"
-              ></p-sortIcon>
-            </th>
-          </ng-container>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-product>
-        <tr>
-          <td *ngFor="let col of columns" class="body-row">
-            <ng-container [ngSwitch]="col.fieldtype">
-              <ng-container *ngSwitchCase="'text'">
-                {{ product[col.fieldname] }}
-              </ng-container>
-              <ng-container *ngSwitchCase="'number'">
-                {{ product[col.fieldname] }}
-              </ng-container>
+  <div class="row mt-2">
+    <div class="col-12 d-flex flex-row justify-content-between">
+      <div class="col-2" *ngFor="let card of taskStatusCounts">
+        <app-statusCardCount
+          [cardText]="card.cardText"
+          [cardIcon]="card.cardIcon"
+          [cardColor]="card.cardColor"
+          [cardIconBackgroundColor]="card.cardIconBackgroundColor"
+          [cardCountValue]="card.cardCountValue"
+          [showIcon]="true"
+          [showText]="true"
+          [showCount]="true"
+          [showTooltip]="false"
+        />
+      </div>
+    </div>
+    <div class="mt-2">
+      <h2 class="text-center">Tasks</h2>
+    </div>
+    <div class="d-flex flex-row justify-content-end">
+      <span class="p-input-icon-left margin-right">
+        <i class="pi pi-search"></i>
+        <input
+          type="text"
+          pInputText
+          [(ngModel)]="searchInput"
+          (input)="onGlobalFilter()"
+          placeholder="Search tasks"
+        />
+      </span>
+      <p-button label="Create" icon="pi pi-plus" (onClick)="onCreateTask()" />
+    </div>
+    <div class="mt-3">
+      <p-table
+        #dt
+        [value]="rowData"
+        [columns]="columns"
+        styleClass="p-datatable-gridlines"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        sortMode="multiple"
+        [resizableColumns]="true"
+        [reorderableColumns]="true"
+        [globalFilterFields]="globalFilters"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <ng-container *ngFor="let col of columns">
+              <th class="header-row" [pSortableColumn]="col.fieldname">
+                {{ col.label }}
+                <p-sortIcon
+                  [field]="col.fieldname"
+                  style="font-size: 12px"
+                ></p-sortIcon>
+              </th>
             </ng-container>
-          </td>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="emptymessage" let-columns>
-        <tr>
-          <td [attr.colspan]="columns.length" class="text-center">
-            No Tasks found
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+          <tr>
+            <td *ngFor="let col of columns" class="body-row">
+              <ng-container [ngSwitch]="col.fieldtype">
+                <ng-container *ngSwitchCase="'text'">
+                  {{ product[col.fieldname] }}
+                </ng-container>
+                <ng-container *ngSwitchCase="'number'">
+                  {{ product[col.fieldname] }}
+                </ng-container>
+              </ng-container>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage" let-columns>
+          <tr>
+            <td [attr.colspan]="columns.length" class="text-center">
+              No Tasks found
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
   </div>
 </div>
