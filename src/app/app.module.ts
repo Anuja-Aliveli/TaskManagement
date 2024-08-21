@@ -15,6 +15,7 @@ import { TaskFormComponent } from './components/TaskForm/TaskForm.component';
 import { TaskViewComponent } from './components/TaskView/TaskView.component';
 import { StoreModule } from '@ngrx/store';
 import { TaskReducer } from './components/store/reducers';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Import BrowserAnimationsModule
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { TaskReducer } from './components/store/reducers';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     InputTextModule,

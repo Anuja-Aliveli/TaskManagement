@@ -32,3 +32,8 @@ export interface RowData {
     status: string;
     priority: string;
 }
+
+export interface DropdownOptions {
+    label: string;
+    value: string;
+}

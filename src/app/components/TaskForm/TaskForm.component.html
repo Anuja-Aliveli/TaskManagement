@@ -1,69 +1,84 @@
 <div class="container bg-white">
-  <div class="row p-3">
-    <div class="col-12">
-      <h2>Create Task</h2>
+  <form [formGroup]="form" (ngSubmit)="onCreateTask()">
+    <div class="row p-3">
+      <div class="col-12">
+        <h2>Create Task</h2>
+      </div>
+      <div
+        class="col-12 col-lg-3 d-flex flex-row justify-content-start align-items-center w-100 border-bottom-input mt-2"
+      >
+        <label class="label-width">Task Title</label>
+        <input
+          type="text"
+          pInputText
+          formControlName="title"
+          placeholder="Enter task title"
+          class="flex-grow"
+        />
+      </div>
+      <div
+        class="col-12 col-lg-3 d-flex flex-row justify-content-start align-items-center w-100 border-bottom-input mt-2"
+      >
+        <label class="label-width">Task Description</label>
+        <input
+          type="text"
+          pInputText
+          formControlName="description"
+          placeholder="Enter task description"
+          class="flex-grow"
+        />
+      </div>
+      <div
+        class="col-12 col-lg-3 d-flex flex-row justify-content-start align-items-center w-100 border-bottom-input mt-2"
+      >
+        <label class="label-width">Due Date</label>
+        <p-calendar
+          formControlName="dueDate"
+          [showIcon]="true"
+          placeholder="Select a due date"
+          [style.width]="'100%'"
+        ></p-calendar>
+      </div>
+      <div
+        class="col-12 col-lg-3 d-flex flex-row justify-content-start align-items-center w-100 border-bottom-input mt-2"
+      >
+        <label class="label-width">Status</label>
+        <p-dropdown
+          [options]="status"
+          formControlName="status"
+          optionLabel="label"
+          placeholder="Choose Status"
+          [style.width]="'100%'"
+        />
+      </div>
+      <div
+        class="col-12 col-lg-3 d-flex flex-row justify-content-start align-items-center w-100 border-bottom-input mt-2"
+      >
+        <label class="label-width">Priority</label>
+        <p-dropdown
+          [options]="priority"
+          formControlName="priority"
+          optionLabel="label"
+          placeholder="Select Priority"
+          [style.width]="'100%'"
+        />
+      </div>
     </div>
-    <div
-      class="col-12 col-lg-3 d-flex flex-row justify-content-start align-items-center w-100 border-bottom-input mt-2"
-    >
-      <label class="label-width">Task Title</label>
-      <input
-        type="text"
-        pInputText
-        placeholder="Search tasks"
-        class="flex-grow"
-      />
+    <div class="row">
+      <div class="col-12 d-flex flex-row justify-content-center mb-3">
+        <p-button
+          type="submit"
+          label="Create"
+          icon="pi pi-plus"
+          class="margin-right"
+        ></p-button>
+        <p-button
+          type="button"
+          label="Cancel"
+          icon="pi pi-times"
+          [outlined]="true"
+        ></p-button>
+      </div>
     </div>
-    <div
-      class="col-12 col-lg-3 d-flex flex-row justify-content-start align-items-center w-100 border-bottom-input mt-2"
-    >
-      <label class="label-width">Task Description</label>
-      <input
-        type="text"
-        pInputText
-        placeholder="Search tasks"
-        class="flex-grow"
-      />
-    </div>
-    <div
-      class="col-12 col-lg-3 d-flex flex-row justify-content-start align-items-center w-100 border-bottom-input mt-2"
-    >
-      <label class="label-width">Due Date</label>
-      <input
-        type="text"
-        pInputText
-        placeholder="Search tasks"
-        class="flex-grow"
-      />
-    </div>
-    <div
-      class="col-12 col-lg-3 d-flex flex-row justify-content-start align-items-center w-100 border-bottom-input mt-2"
-    >
-      <label class="label-width">Status</label>
-      <p-dropdown
-        [options]="cities"
-        [(ngModel)]="temp"
-        optionLabel="name"
-        placeholder="Select a City"
-      />
-    </div>
-    <div
-      class="col-12 col-lg-3 d-flex flex-row justify-content-start align-items-center w-100 border-bottom-input mt-2"
-    >
-      <label class="label-width">Priority</label>
-      <p-dropdown
-        [options]="cities"
-        [(ngModel)]="temp"
-        optionLabel="name"
-        placeholder="Select a City"
-        [style.width]="'100%'"
-      />
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12 d-flex flex-row justify-content-center mb-3">
-      <p-button label="Create" icon="pi pi-plus" class="margin-right" />
-      <p-button label="Cancel" icon="pi pi-times" [outlined]="true" />
-    </div>
-  </div>
+  </form>
 </div>

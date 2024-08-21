@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { DropdownOptions } from '../store/interface';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { loadTaskDetailsSuccess } from '../store/actions';
 
 @Component({
   selector: 'app-TaskForm',
@@ -7,19 +11,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaskFormComponent implements OnInit {
 
-  cities: any = [];
-  temp: any;
+  priority: DropdownOptions[] = [];
+  status: DropdownOptions[] = [];
+  form: any;
+  isSubmitted: boolean = false;
 
-  constructor() { }
+  constructor(private fb: FormBuilder, private store: Store) { }
 
   ngOnInit() {
-    this.cities = [
-      { name: 'New York', code: 'NY' },
-      { name: 'Rome', code: 'RM' },
-      { name: 'London', code: 'LDN' },
-      { name: 'Istanbul', code: 'IST' },
-      { name: 'Paris', code: 'PRS' }
+    this.priority = [
+      { label: 'Low', value: 'low' },
+      { label: 'Medium', value: 'medium' },
+      { label: 'High', value: 'high' },
     ];
+    this.status = [
+      { label: 'Pending', value: 'pending' },
+      { label: 'In Progress', value: 'in-progress' },
+      { label: 'Completed', value: 'completed' },
+    ];
+    this.initForm()
   }
 
+  initForm() {
+    this.form = this.fb.group({
+      title: ['', Validators.required],
+      description: [''],
+      dueDate: [null, Validators.required],
+      status: ['', Validators.required],
+      priority: ['', Validators.required]
+    });
+
+
+  }
+
+  onCreateTask() {
+    this.isSubmitted = true;
+    if (this.form.valid) {
+      this.store.dispatch(loadTaskDetailsSuccess(this.form.value));
+      console.log('Task created:', this.form.value);
+    }
+  }
 }
