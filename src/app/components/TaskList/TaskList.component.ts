@@ -87,5 +87,8 @@ export class TaskListComponent implements OnInit {
     this.router.navigate(['/tasks/edit', task.rowId], { state: { task } });
   }
 
-  onDelete(task: any) {}
+  onDelete(task: any) {
+    console.log(task)
+    this.taskService.deleteTask(task.rowId);
+  }
 }

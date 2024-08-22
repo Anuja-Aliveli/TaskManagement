@@ -116,11 +116,11 @@
                   class="p-button-rounded p-button-success me-3"
                   (click)="onEdit(task)"
                 ></p-button>
-                <button
-                  pButton
+                <p-button
                   icon="pi pi-trash"
                   class="p-button-rounded p-button-danger"
-                ></button>
+                  (click)="onDelete(task)"
+                ></p-button>
               </td>
             </tr>
           </ng-template>

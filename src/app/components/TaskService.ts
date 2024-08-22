@@ -40,4 +40,11 @@ export class TaskService {
     const currentList = this.currentListSubject.value;
     return currentList.find((task: any) => task.rowId === id);
   }
+
+  deleteTask(id: number): void {
+    
+    const currentList = this.currentListSubject.value;
+    const updatedList = currentList.filter((task: any) => task.rowId !== id);
+    this.currentListSubject.next(updatedList);
+  }
 }
