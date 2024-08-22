@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DropdownOptions, RowData, TaskDetails } from '../store/interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { loadTaskDetailsSuccess, loadTaskListSuccess } from '../store/actions';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { BehaviorSubject, Observable, of, switchMap, take } from 'rxjs';
-import { Title } from '@angular/platform-browser';
-import { selectTaskDetails, selectTaskList } from '../store/selectors';
 import { TaskService } from '../TaskService';
 
 @Component({
@@ -15,30 +10,30 @@ import { TaskService } from '../TaskService';
   templateUrl: './TaskForm.component.html',
   styleUrls: ['./TaskForm.component.css'],
   providers: [MessageService]
-
 })
-
 export class TaskFormComponent implements OnInit {
-  initialForm: TaskDetails = {
-    title: '',
-    description: '',
-    dueDate: null,
-    status: '',
-    priority: ''
-  };
+  form!: FormGroup;
+  isSubmitted: boolean = false;
   priority: DropdownOptions[] = [];
   status: DropdownOptions[] = [];
-  form: any;
-  isSubmitted: boolean = false;
+  isEditMode: boolean = false;
+  taskId: number | null = null;
 
   constructor(
     private fb: FormBuilder,
     private taskService: TaskService,
     private router: Router,
+    private route: ActivatedRoute,
     private messageService: MessageService
   ) { }
 
   ngOnInit() {
+    this.initDropdowns();
+    this.initForm();
+    this.checkEditMode();
+  }
+
+  initDropdowns() {
     this.priority = [
       { label: 'Low', value: 'low' },
       { label: 'Medium', value: 'medium' },
@@ -49,30 +44,63 @@ export class TaskFormComponent implements OnInit {
       { label: 'In Progress', value: 'in-progress' },
       { label: 'Completed', value: 'completed' },
     ];
-    this.initForm();
   }
 
   initForm() {
     this.form = this.fb.group({
       title: ['', Validators.required],
-      description: [''],
+      description: ['', Validators.required],
       dueDate: [null, Validators.required],
       status: ['', Validators.required],
       priority: ['', Validators.required],
     });
   }
 
-  onCreateTask() {
+  checkEditMode() {
+    this.route.params.subscribe(params => {
+      if (params['id']) {
+        this.isEditMode = true;
+        this.taskId = +params['id'];
+        this.loadTaskData(this.taskId);
+      }
+    });
+  }
+
+  loadTaskData(taskId: number) {
+    const task = this.taskService.getTaskById(taskId);
+    if (task) {
+      this.form.patchValue({
+        ...task,
+        dueDate: task.dueDate ? new Date(task.dueDate) : null
+      });
+    } else {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Task not found' });
+      this.router.navigate(['/tasks/list']);
+    }
+  }
+
+  onSubmit() {
     this.isSubmitted = true;
     if (this.form.valid) {
-      this.isSubmitted = false;
-      const newTask: RowData = { ...this.form.value, rowId: Date.now() };
-      this.taskService.addTask(newTask);
-      this.router.navigate(['tasks/list']);
+      const formValue = this.form.value;
+      const taskData: RowData = {
+        ...formValue,
+        rowId: this.isEditMode ? this.taskId! : Date.now(),
+        dueDate: formValue.dueDate ? new Date(formValue.dueDate).toISOString() : null
+      };
+      
+      if (this.isEditMode) {
+        this.taskService.updateTask(taskData);
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Task updated successfully' });
+      } else {
+        this.taskService.addTask(taskData);
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Task created successfully' });
+      }
+      this.router.navigate(['/tasks/list']);
     }
   }
 
   onCancel() {
-    this.router.navigate(['tasks/list']);
+    this.router.navigate(['/tasks/list']);
   }
 }

@@ -19,13 +19,17 @@ import { TaskReducer } from './components/store/reducers';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Import BrowserAnimationsModule
 import { StatusCardCountComponent } from './components/statusCardCount/statusCardCount.component';
 import { ToastModule } from 'primeng/toast';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { StatusColorPipe } from './components/TaskList/statusColor.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
     TaskListComponent,
     TaskFormComponent,
     TaskViewComponent,
-    StatusCardCountComponent
+    StatusColorPipe,
+    StatusCardCountComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,9 +44,10 @@ import { ToastModule } from 'primeng/toast';
     FormsModule,
     CardModule,
     ToastModule,
+    MultiSelectModule,
     StoreModule.forRoot({ TaskManagement: TaskReducer }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

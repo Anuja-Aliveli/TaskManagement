@@ -1,8 +1,8 @@
 <div class="container bg-white">
-  <form [formGroup]="form" (ngSubmit)="onCreateTask()">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="row p-3">
       <div class="col-12">
-        <h2>Create Task</h2>
+        <h2>{{ isEditMode ? 'Edit Task' : 'Create Task' }}</h2>
       </div>
 
       <!-- Task Title -->
@@ -124,8 +124,8 @@
       <div class="col-12 d-flex flex-row justify-content-center mb-3">
         <p-button
           type="submit"
-          label="Create"
-          icon="pi pi-plus"
+          [label]="isEditMode ? 'Update' : 'Create'"
+          [icon]="isEditMode ? 'pi pi-check' : 'pi pi-plus'"
           class="margin-right"
         ></p-button>
         <p-button

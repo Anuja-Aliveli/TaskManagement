@@ -7,12 +7,13 @@ import { TaskListComponent } from './components/TaskList/TaskList.component';
 const routes: Routes = [
   { path: '', redirectTo: '/tasks/list', pathMatch: 'full' },
   { path: 'tasks/create', component: TaskFormComponent },
+  { path: 'tasks/edit/:id', component: TaskFormComponent },
   { path: 'tasks/list', component: TaskListComponent },
-  { path: 'tasks/view', component: TaskViewComponent }
+  { path: 'tasks/view', component: TaskViewComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
