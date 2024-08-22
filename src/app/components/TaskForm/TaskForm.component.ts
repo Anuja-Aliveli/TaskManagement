@@ -4,11 +4,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { loadTaskDetailsSuccess } from '../store/actions';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-TaskForm',
   templateUrl: './TaskForm.component.html',
   styleUrls: ['./TaskForm.component.css'],
+  providers: [MessageService]
+
 })
 export class TaskFormComponent implements OnInit {
   priority: DropdownOptions[] = [];
@@ -16,7 +19,8 @@ export class TaskFormComponent implements OnInit {
   form: any;
   isSubmitted: boolean = false;
 
-  constructor(private fb: FormBuilder, private store: Store, private router: Router) {}
+  constructor(private fb: FormBuilder, private store: Store, private router: Router, private messageService: MessageService) {
+  }
 
   ngOnInit() {
     this.priority = [
@@ -46,6 +50,7 @@ export class TaskFormComponent implements OnInit {
     this.isSubmitted = true;
     if (this.form.valid) {
       this.store.dispatch(loadTaskDetailsSuccess(this.form.value));
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Task Created Successfully' });
       console.log('Task created:', this.form.value);
     }
   }

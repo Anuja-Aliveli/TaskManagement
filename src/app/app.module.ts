@@ -18,7 +18,7 @@ import { StoreModule } from '@ngrx/store';
 import { TaskReducer } from './components/store/reducers';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Import BrowserAnimationsModule
 import { StatusCardCountComponent } from './components/statusCardCount/statusCardCount.component';
-
+import { ToastModule } from 'primeng/toast';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +39,7 @@ import { StatusCardCountComponent } from './components/statusCardCount/statusCar
     TableModule,
     FormsModule,
     CardModule,
+    ToastModule,
     StoreModule.forRoot({ tasks: TaskReducer }),
   ],
   providers: [],
