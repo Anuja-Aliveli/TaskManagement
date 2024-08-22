@@ -1,19 +1,19 @@
 <div class="p-3">
-  <div class=" m-3">
+  <div class="m-3">
     <h2 class="display-4">Task Manager</h2>
     <div class="row mt-3">
       <div class="col-12 d-flex flex-row justify-content-between">
         <div class="col-2" *ngFor="let card of taskStatusCounts">
           <app-statusCardCount
-          [cardText]="card.cardText"
-          [cardIcon]="card.cardIcon"
-          [cardColor]="card.cardColor"
-          [cardIconBackgroundColor]="card.cardIconBackgroundColor"
-          [cardCountValue]="card.cardCountValue"
-          [showIcon]="true"
-          [showText]="true"
-          [showCount]="true"
-          [showTooltip]="false"
+            [cardText]="card.cardText"
+            [cardIcon]="card.cardIcon"
+            [cardColor]="card.cardColor"
+            [cardIconBackgroundColor]="card.cardIconBackgroundColor"
+            [cardCountValue]="card.cardCountValue"
+            [showIcon]="true"
+            [showText]="true"
+            [showCount]="true"
+            [showTooltip]="false"
           />
         </div>
       </div>
@@ -42,11 +42,10 @@
           sortMode="multiple"
           [resizableColumns]="true"
           [reorderableColumns]="true"
-          [globalFilterFields]="globalFilters"
+          [globalFilterFields]="['status.label']"
         >
           <ng-template pTemplate="header">
             <tr>
-              <th class="header-row"></th>
               <ng-container *ngFor="let col of columns">
                 <th class="header-row" [pSortableColumn]="col.fieldname">
                   {{ col.label }}
@@ -54,27 +53,78 @@
                     [field]="col.fieldname"
                     style="font-size: 12px"
                   ></p-sortIcon>
+                  <ng-container *ngIf="col.fieldname === 'status'">
+                    <p-columnFilter
+                      type="text"
+                      field="status.label"
+                      display="menu"
+                    >
+                      <ng-template
+                        pTemplate="filter"
+                        let-value
+                        let-filter="filterCallback"
+                      >
+                        <p-multiSelect
+                          [ngModel]="value"
+                          [options]="statuses"
+                          placeholder="Any"
+                          (onChange)="filter($event.value)"
+                          optionLabel="label"
+                        >
+                          <ng-template let-option pTemplate="item">
+                            <span [ngClass]="option.label | statusColor">{{
+                              option.label
+                            }}</span>
+                          </ng-template>
+                        </p-multiSelect>
+                      </ng-template>
+                    </p-columnFilter>
+                  </ng-container>
                 </th>
               </ng-container>
+              <th class="header-row"></th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-product>
+          <ng-template pTemplate="body" let-task>
             <tr>
-              <td class="body-row">
-                <p-tableCheckbox [value]="product" />
-              </td>
               <td *ngFor="let col of columns" class="body-row">
                 <ng-container [ngSwitch]="col.fieldtype">
-                  <ng-container *ngSwitchCase="'text'">
-                    {{ product[col.fieldname] }}
-                  </ng-container>
-                  <ng-container *ngSwitchCase="'number'">
-                    {{ product[col.fieldname] }}
+                  <ng-container *ngSwitchCase="'data'">
+                    <!-- Check if the column is a nested property -->
+                    <ng-container *ngIf="col.fieldname === 'status'">
+                      <span [ngClass]="task.status?.label | statusColor">
+                        {{ task.status?.label }}
+                      </span>
+                    </ng-container>
+                    <ng-container *ngIf="col.fieldname === 'priority'">
+                      {{ task.priority?.label }}
+                    </ng-container>
+                    <ng-container
+                      *ngIf="
+                        col.fieldname !== 'status' &&
+                        col.fieldname !== 'priority'
+                      "
+                    >
+                      {{ task[col.fieldname] }}
+                    </ng-container>
                   </ng-container>
                 </ng-container>
               </td>
+              <td class="body-row">
+                <p-button
+                  icon="pi pi-pencil"
+                  class="p-button-rounded p-button-success me-3"
+                  (click)="onEdit(task)"
+                ></p-button>
+                <button
+                  pButton
+                  icon="pi pi-trash"
+                  class="p-button-rounded p-button-danger"
+                ></button>
+              </td>
             </tr>
           </ng-template>
+
           <ng-template pTemplate="emptymessage" let-columns>
             <tr>
               <td [attr.colspan]="columns.length" class="text-center">
