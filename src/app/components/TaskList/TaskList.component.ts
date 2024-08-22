@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Table } from 'primeng/table';
+import { TaskService } from '../TaskService';
 
 @Component({
   selector: 'app-TaskList',
@@ -13,7 +14,7 @@ export class TaskListComponent implements OnInit {
   searchInput: string = '';
   globalFilters: any = [];
   taskStatusCounts: any = [];
-  constructor(private router: Router) {}
+  constructor(private router: Router, private taskService: TaskService) { }
   @ViewChild('dt') table?: Table;
 
   ngOnInit() {
@@ -42,38 +43,16 @@ export class TaskListComponent implements OnInit {
     ];
 
     this.columns = [
-      { fieldtype: 'text', fieldname: 'code', label: 'Code' },
-      { fieldtype: 'text', fieldname: 'name', label: 'Name' },
-      { fieldtype: 'text', fieldname: 'category', label: 'Category' },
-      { fieldtype: 'number', fieldname: 'quantity', label: 'Quantity' },
+      { fieldtype: 'data', label: 'Title', fieldname: 'title' },
+      { fieldtype: 'data', label: 'Description', fieldname: 'description' },
+      { fieldtype: 'data', label: 'Category', fieldname: 'category' },
+      { fieldtype: 'data', label: 'Quantity', fieldname: 'quantity' },
     ];
-    this.globalFilters = this.columns.map((col: any) => col.fieldname);
-    this.rowData = [
-      {
-        id: '1000',
-        code: 'f230fh0g3',
-        name: 'Bamboo Watch',
-        description: 'Product Description',
-        image: 'bamboo-watch.jpg',
-        price: 65,
-        category: 'Accessories',
-        quantity: 24,
-        inventoryStatus: 'INSTOCK',
-        rating: 5,
-      },
-      {
-        id: '1000',
-        code: 'f230fh0g3',
-        name: 'Bamboo Watchessssssss',
-        description: 'Product Description',
-        image: 'bamboo-watch.jpg',
-        price: 65,
-        category: 'Gifts',
-        quantity: 26,
-        inventoryStatus: 'INSTOCK',
-        rating: 5,
-      },
-    ];
+    this.globalFilters = this.columns.map((col: any) => col.label);
+    this.taskService.getCurrentList().subscribe(list => {
+      console.log('Current List in AnotherComponent:', list);
+      this.rowData = list;
+    });
   }
 
   onCreateTask() {
