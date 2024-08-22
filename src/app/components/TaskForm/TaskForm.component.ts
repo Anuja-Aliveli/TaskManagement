@@ -3,20 +3,20 @@ import { DropdownOptions } from '../store/interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { loadTaskDetailsSuccess } from '../store/actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-TaskForm',
   templateUrl: './TaskForm.component.html',
-  styleUrls: ['./TaskForm.component.css']
+  styleUrls: ['./TaskForm.component.css'],
 })
 export class TaskFormComponent implements OnInit {
-
   priority: DropdownOptions[] = [];
   status: DropdownOptions[] = [];
   form: any;
   isSubmitted: boolean = false;
 
-  constructor(private fb: FormBuilder, private store: Store) { }
+  constructor(private fb: FormBuilder, private store: Store, private router: Router) {}
 
   ngOnInit() {
     this.priority = [
@@ -29,7 +29,7 @@ export class TaskFormComponent implements OnInit {
       { label: 'In Progress', value: 'in-progress' },
       { label: 'Completed', value: 'completed' },
     ];
-    this.initForm()
+    this.initForm();
   }
 
   initForm() {
@@ -38,10 +38,8 @@ export class TaskFormComponent implements OnInit {
       description: [''],
       dueDate: [null, Validators.required],
       status: ['', Validators.required],
-      priority: ['', Validators.required]
+      priority: ['', Validators.required],
     });
-
-
   }
 
   onCreateTask() {
@@ -50,5 +48,9 @@ export class TaskFormComponent implements OnInit {
       this.store.dispatch(loadTaskDetailsSuccess(this.form.value));
       console.log('Task created:', this.form.value);
     }
+  }
+
+  onCancel() {
+    this.router.navigate(['tasks/list']);
   }
 }
