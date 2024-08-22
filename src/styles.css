@@ -1,188 +1,186 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-@import "primeng/resources/themes/lara-light-blue/theme.css";
-@import "primeng/resources/primeng.css";
-@import "primeicons/primeicons.css";
+@import 'primeng/resources/themes/lara-light-blue/theme.css';
+@import 'primeng/resources/primeng.css';
+@import 'primeicons/primeicons.css';
 
 :root {
-    --primary-font-size: 22px;
-    --h2-font-size: 20px;
-    --h3-font-size: 18px;
-    --h4-font-size: 16px;
-    --h5-font-size: 14px;
-    --h6-font-size: 12px;
-    --selected-bg-color: #f0f7ff;
-    --selected-color-border: #d8ebff;
-    --background-color: #ebeff5;
-    --route-color: #1d66b2;
+  --primary-font-size: 22px;
+  --h2-font-size: 20px;
+  --h3-font-size: 18px;
+  --h4-font-size: 16px;
+  --h5-font-size: 14px;
+  --h6-font-size: 12px;
+  --selected-bg-color: #f0f7ff;
+  --selected-color-border: #d8ebff;
+  --background-color: #ebeff5;
+  --route-color: #1d66b2;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    height: 100vh;
-    width: 100vw;
+  font-family: 'Inter', sans-serif;
+  height: 100vh;
+  width: 100vw;
 }
 
 h1 {
-    font-size: var(--primary-font-size);
-    font-weight: 600;
-    line-height: calc(78 / 70);
-    letter-spacing: -0.2px;
+  font-size: var(--primary-font-size);
+  font-weight: 600;
+  line-height: calc(78 / 70);
+  letter-spacing: -0.2px;
 }
 
 h2 {
-    font-size: var(--h2-font-size);
-    font-weight: 600;
-    line-height: 1.2;
+  font-size: var(--h2-font-size);
+  font-weight: 600;
+  line-height: 1.2;
 }
 
 h3 {
-    font-size: var(--h3-font-size);
-    font-weight: 500;
-    line-height: 1.2;
+  font-size: var(--h3-font-size);
+  font-weight: 500;
+  line-height: 1.2;
 }
 
 h4 {
-    font-size: var(--h4-font-size);
-    line-height: 1.5;
+  font-size: var(--h4-font-size);
+  line-height: 1.5;
 }
 
 h5 {
-    font-size: var(--h5-font-size);
-    font-weight: 600;
+  font-size: var(--h5-font-size);
+  font-weight: 600;
 }
 
 h6 {
-    font-size: var(--h6-font-size);
-    font-weight: 600;
+  font-size: var(--h6-font-size);
+  font-weight: 600;
 }
 
 .subtitle1 {
-    font-size: var(--h4-font-size);
+  font-size: var(--h4-font-size);
 }
 
 .subtitle2 {
-    font-size: var(--h5-font-size);
+  font-size: var(--h5-font-size);
 }
 
 body1 {
-    font-weight: 400;
-    font-size: var(--h4-font-size);
+  font-weight: 400;
+  font-size: var(--h4-font-size);
 }
 
 body2 {
-    font-weight: 400;
-    font-size: var(--h5-font-size);
+  font-weight: 400;
+  font-size: var(--h5-font-size);
 }
 
 .caption {
-    font-weight: 400;
-    font-size: var(--h6-font-size);
+  font-weight: 400;
+  font-size: var(--h6-font-size);
 }
 
 p {
-    font-size: var(--h4-font-size);
-    line-height: 1.5;
+  font-size: var(--h4-font-size);
+  line-height: 1.5;
 }
 
 label {
-    font-size: var(--h4-font-size);
-    font-weight: 500;
-    line-height: 1.5;
+  font-size: var(--h4-font-size);
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 span {
-    font-size: var(--h4-font-size);
+  font-size: var(--h4-font-size);
 }
 
 a {
-    font-size: var(--h4-font-size);
-    text-decoration: none;
+  font-size: var(--h4-font-size);
+  text-decoration: none;
 }
 
 button {
-    height: 30px;
-    width: 100%;
-    outline: none;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: var(--h5-font-size);
+  height: 30px;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: var(--h5-font-size);
 }
 
 button:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 button:disabled {
-    opacity: 0.3;
+  opacity: 0.3;
 }
 
 input {
-    outline: none;
-    height: 30px;
-    width: '100%';
-    border-radius: 5px;
-    font-size: var(--h5-font-size);
-    background-color: transparent;
-    outline: none;
-    border: none;
+  outline: none;
+  height: 30px;
+  width: '100%';
+  border-radius: 5px;
+  font-size: var(--h5-font-size);
+  background-color: transparent;
+  outline: none;
+  border: none;
 }
 
 a {
-    text-decoration: none;
-    color: var(--route-color);
+  text-decoration: none;
+  color: var(--route-color);
 }
 
 .margin-right {
-    margin-right: 20px !important;
+  margin-right: 20px !important;
 }
 
 .app-background {
-    background-color: var(--background-color);
+  background-color: var(--background-color);
 }
 
 .bg-white {
-    background-color: #ffffff;
+  background-color: #ffffff;
 }
 
 .p-dropdown {
-    outline: none;
-    border: none;
+  outline: none;
+  border: none;
 }
 
 .p-dropdown span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    height: 35px;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  height: 35px;
 }
 
 .p-button .p-button-outlined:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .label-width {
-    width: 150px;
+  width: 150px;
 }
 
 .span-color {
-    color: var(--route-color);
+  color: var(--route-color);
 }
 
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
-    padding: 0;
+  padding: 0;
 }
 
 ul {
-    padding-left: 0;
+  padding-left: 0;
 }
 
 .p-calendar-w-btn .p-datepicker-trigger {
-    width: 15%;
+  width: 15%;
 }
 
 .error {
-    border-bottom: 2px solid red;
+  border-bottom: 2px solid red;
 }
