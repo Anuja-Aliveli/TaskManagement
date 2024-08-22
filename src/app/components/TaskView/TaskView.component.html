@@ -1,40 +1,56 @@
-<div class="container bg-white w-50">
+<div class="container bg-white w-50" *ngIf="task">
   <div
     class="row p-3 d-flex flex-column justify-content-center align-items-center"
   >
-    <div class="col-12 d-flex flex-row justify-content-center">
+    <div
+      class="col-12 d-flex flex-row justify-content-center align-items-center"
+    >
       <h2 class="margin-right">Task Details</h2>
-      <p-button label="Edit" icon="pi pi-pencil" />
+      <p-button
+        label="Edit"
+        icon="pi pi-pencil"
+        (onClick)="onEdit()"
+      ></p-button>
     </div>
     <div
       class="col-12 col-lg-3 w-100 d-flex flex-row justify-content-center mt-2"
     >
       <label class="label-width">Task Title</label>
-      <span class="span-color">Task Title</span>
+      <span class="span-color">{{ task.title }}</span>
     </div>
     <div
       class="col-12 col-lg-3 w-100 d-flex flex-row justify-content-center mt-2"
     >
       <label class="label-width">Task Description</label>
-      <span class="span-color">Description</span>
+      <span class="span-color">{{ task.description }}</span>
     </div>
     <div
       class="col-12 col-lg-3 w-100 d-flex flex-row justify-content-center mt-2"
     >
       <label class="label-width">Due Date</label>
-      <span class="span-color">Due Date</span>
+      <span class="span-color">{{ task.dueDate | date : 'medium' }}</span>
     </div>
     <div
       class="col-12 col-lg-3 w-100 d-flex flex-row justify-content-center mt-2"
     >
       <label class="label-width">Status</label>
-      <span class="span-color">Status</span>
+      <span class="span-color">{{ task.status.label }}</span>
     </div>
     <div
       class="col-12 col-lg-3 w-100 d-flex flex-row justify-content-center mt-2"
     >
       <label class="label-width">Priority</label>
-      <span class="span-color">Proty</span>
+      <span class="span-color">{{ task.priority.label }}</span>
+    </div>
+    <div class="col-12 d-flex flex-row justify-content-center mt-3">
+      <p-button
+        label="Back to List"
+        icon="pi pi-arrow-left"
+        (onClick)="onBack()"
+        styleClass="p-button-secondary"
+      ></p-button>
     </div>
   </div>
 </div>
+
+<p-toast [life]="1000"></p-toast>

@@ -118,8 +118,13 @@
                 ></p-button>
                 <p-button
                   icon="pi pi-trash"
-                  class="p-button-rounded p-button-danger"
+                  class="p-button-rounded p-button-danger me-3"
                   (click)="onDelete(task)"
+                ></p-button>
+                <p-button
+                  icon="pi pi-eye"
+                  class="p-button-rounded p-button-primary"
+                  (click)="onView(task)"
                 ></p-button>
               </td>
             </tr>
