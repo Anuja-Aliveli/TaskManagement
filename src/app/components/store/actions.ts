@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { TaskDetails, TaskList } from './interface';
+import { RowData, TaskDetails, TaskList } from './interface';
 const prefix = 'Task Management';
 
 // Task List Actions
@@ -9,7 +9,7 @@ export const loadTaskList = createAction(
 
 export const loadTaskListSuccess = createAction(
     `${prefix} Load Task List Success`,
-    props<{ taskList: TaskList }>()
+    props<{ taskList: RowData[] }>()
 );
 
 export const loadTaskListFailure = createAction(

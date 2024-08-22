@@ -1,6 +1,6 @@
 export interface TaskStoreInterface {
-    taskDetails: TaskDetails | null;
-    taskList: TaskList | null;
+    taskDetails: TaskDetails;
+    taskList: RowData[];
     error: string;
 }
 
@@ -24,6 +24,7 @@ export interface ColumnData {
 }
 
 export interface RowData {
+    rowId?: Date;
     updatedAt: Date | null;
     createdAt: Date | null;
     title: string;

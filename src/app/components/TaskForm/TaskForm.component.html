@@ -4,8 +4,15 @@
       <div class="col-12">
         <h2>Create Task</h2>
       </div>
+
+      <!-- Task Title -->
       <div
-        class="col-12 col-lg-3 d-flex flex-row justify-content-start align-items-center w-100 border-bottom-input mt-2"
+        class="col-12 col-lg-3 d-flex flex-row justify-content-start align-items-center w-100 mt-2"
+        [ngClass]="
+          isSubmitted && form.get('title')?.errors
+            ? 'error'
+            : 'border-bottom-input'
+        "
       >
         <label class="label-width">Task Title</label>
         <input
@@ -16,8 +23,18 @@
           class="flex-grow"
         />
       </div>
+      <small *ngIf="isSubmitted && form.get('title')?.errors" class="p-error">
+        This field is required
+      </small>
+
+      <!-- Task Description -->
       <div
-        class="col-12 col-lg-3 d-flex flex-row justify-content-start align-items-center w-100 border-bottom-input mt-2"
+        class="col-12 col-lg-3 d-flex flex-row justify-content-start align-items-center w-100 mt-2"
+        [ngClass]="
+          isSubmitted && form.get('description')?.errors
+            ? 'error'
+            : 'border-bottom-input'
+        "
       >
         <label class="label-width">Task Description</label>
         <input
@@ -28,8 +45,21 @@
           class="flex-grow"
         />
       </div>
+      <small
+        *ngIf="isSubmitted && form.get('description')?.errors"
+        class="p-error"
+      >
+        This field is required
+      </small>
+
+      <!-- Due Date -->
       <div
-        class="col-12 col-lg-3 d-flex flex-row justify-content-start align-items-center w-100 border-bottom-input mt-2"
+        class="col-12 col-lg-3 d-flex flex-row justify-content-start align-items-center w-100 mt-2"
+        [ngClass]="
+          isSubmitted && form.get('dueDate')?.errors
+            ? 'error'
+            : 'border-bottom-input'
+        "
       >
         <label class="label-width">Due Date</label>
         <p-calendar
@@ -39,8 +69,18 @@
           [style.width]="'100%'"
         ></p-calendar>
       </div>
+      <small *ngIf="isSubmitted && form.get('dueDate')?.errors" class="p-error">
+        This field is required
+      </small>
+
+      <!-- Status -->
       <div
-        class="col-12 col-lg-3 d-flex flex-row justify-content-start align-items-center w-100 border-bottom-input mt-2"
+        class="col-12 col-lg-3 d-flex flex-row justify-content-start align-items-center w-100 mt-2"
+        [ngClass]="
+          isSubmitted && form.get('status')?.errors
+            ? 'error'
+            : 'border-bottom-input'
+        "
       >
         <label class="label-width">Status</label>
         <p-dropdown
@@ -49,10 +89,20 @@
           optionLabel="label"
           placeholder="Choose Status"
           [style.width]="'100%'"
-        />
+        ></p-dropdown>
       </div>
+      <small *ngIf="isSubmitted && form.get('status')?.errors" class="p-error">
+        This field is required
+      </small>
+
+      <!-- Priority -->
       <div
-        class="col-12 col-lg-3 d-flex flex-row justify-content-start align-items-center w-100 border-bottom-input mt-2"
+        class="col-12 col-lg-3 d-flex flex-row justify-content-start align-items-center w-100 mt-2"
+        [ngClass]="
+          isSubmitted && form.get('priority')?.errors
+            ? 'error'
+            : 'border-bottom-input'
+        "
       >
         <label class="label-width">Priority</label>
         <p-dropdown
@@ -61,8 +111,14 @@
           optionLabel="label"
           placeholder="Select Priority"
           [style.width]="'100%'"
-        />
+        ></p-dropdown>
       </div>
+      <small
+        *ngIf="isSubmitted && form.get('priority')?.errors"
+        class="p-error"
+      >
+        This field is required
+      </small>
     </div>
     <div class="row">
       <div class="col-12 d-flex flex-row justify-content-center mb-3">
@@ -84,4 +140,4 @@
   </form>
 </div>
 
-<p-toast [life]="300000"></p-toast>
+<p-toast [life]="1000"></p-toast>

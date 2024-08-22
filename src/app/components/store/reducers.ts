@@ -3,8 +3,14 @@ import * as TaskActions from './actions';
 import { TaskStoreInterface } from './interface';
 
 const initialTaskState: TaskStoreInterface = {
-    taskDetails: null,
-    taskList: null,
+    taskDetails: {
+        title: '',
+        description: '',
+        status: '',
+        priority: '',
+        dueDate: null
+    },
+    taskList: [],
     error: ''
 };
 

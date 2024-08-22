@@ -182,3 +182,7 @@ ul {
 .p-calendar-w-btn .p-datepicker-trigger {
     width: 15%;
 }
+
+.error {
+    border-bottom: 2px solid red;
+}

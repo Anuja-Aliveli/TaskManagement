@@ -40,7 +40,7 @@ import { ToastModule } from 'primeng/toast';
     FormsModule,
     CardModule,
     ToastModule,
-    StoreModule.forRoot({ tasks: TaskReducer }),
+    StoreModule.forRoot({ TaskManagement: TaskReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent]
